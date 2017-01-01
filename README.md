@@ -4,7 +4,7 @@ The Java API for RESTful Web Services provides portable APIs for developing, exp
 and accessing Web applications designed and implemented in compliance with principles
 of REST architectural style.
 
-`base_url` is `http://localhost/restapp/`
+`base_url` is `http://localhost/restapp/api`
 
 *Back End Database* is `MySQL` database;
 

@@ -8,18 +8,21 @@ import javax.ws.rs.core.Response;
 
 import com.rahackya.restapp.dao.UserDao;
 import com.rahackya.restapp.model.User;
+import org.apache.log4j.Logger;
 
 /**
  * Created by Rajmani on 12/29/16.
  */
 
-@Path("/")
+@Path("/api")
 public class UserService {
-	private UserDao userDao = UserDao.getInstance();
+    private final static Logger logger = Logger.getLogger(UserService.class);
+    private final UserDao userDao = UserDao.getInstance();
     @GET
     @Path("/")
     @Produces(MediaType.TEXT_PLAIN)
     public Response index() {
+        logger.info("Index resourece requested");
         return Response.status(200).entity("REST API v1 by Rajmani Arya").build();
     }
 
@@ -27,6 +30,7 @@ public class UserService {
     @Path("/users")
     @Produces(MediaType.APPLICATION_JSON)
     public Response showAll() {
+        logger.info("All user requested");
         List<User> output = userDao.getAll();
         return Response.status(200).entity(output).build();
     }
@@ -35,6 +39,7 @@ public class UserService {
     @Path("/users/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response show(@PathParam("id") Integer id) {
+        logger.info("User with " + id + " requested");
         User output = userDao.get(id);
         if (output == null) {
         	return Response.status(404).entity(output).build();
@@ -52,6 +57,7 @@ public class UserService {
                          @FormParam("phone") String phone,
                          @FormParam("company") String company
                          ) {
+        logger.info("Adding new User " + name);
         User user = new User();
         user.setRollno(rollno);
         user.setName(name);
@@ -75,6 +81,7 @@ public class UserService {
                          @FormParam("phone") String phone,
                          @FormParam("company") String company
                          ) {
+        logger.info("Updating user " + id);
         User user = new User();
         user.setRollno(rollno);
         user.setName(name);
@@ -92,6 +99,7 @@ public class UserService {
     @Path("/users/{id}")
     @Produces(MediaType.TEXT_PLAIN)
     public Response destroy(@PathParam("id") Integer id) {
+        logger.info("Destroy user " + id);
         if (userDao.destroy(id)) {
             return Response.status(200).entity("User Deleted").build();
         } else {

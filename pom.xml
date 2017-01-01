@@ -9,10 +9,10 @@
   <url>http://maven.apache.org</url>
   <dependencies>
     	<dependency>
-      		<groupId>junit</groupId>
-      		<artifactId>junit</artifactId>
-      		<version>4.4</version>
-      		<scope>test</scope>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.4</version>
+            <scope>test</scope>
     	</dependency>
     	<dependency>
             <groupId>org.glassfish.jersey.core</groupId>
@@ -25,10 +25,10 @@
             <version>2.25</version>
         </dependency>
         <dependency>
-    		<groupId>org.glassfish.jersey.containers</groupId>
-    		<artifactId>jersey-container-servlet-core</artifactId>
-    		<version>2.25</version>
-		</dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet-core</artifactId>
+            <version>2.25</version>
+            </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-client</artifactId>
@@ -40,17 +40,35 @@
             <version>2.25</version>
         </dependency>
         <dependency>
-    		<groupId>org.glassfish.jersey.media</groupId>
-    		<artifactId>jersey-media-json-jackson</artifactId>
-    		<version>2.25</version>
-		</dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+            <version>2.25</version>
+        </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>6.0.5</version>
         </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+
   </dependencies>
   <build>
     <finalName>restapp</finalName>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.tomcat.maven</groupId>
+            <artifactId>tomcat7-maven-plugin</artifactId>
+            <version>2.2</version>
+            <configuration>
+                <url>http://localhost:8080/manager/text</url>
+                <server>Tomcat</server>
+                <path>/restapp</path>
+            </configuration>
+        </plugin>
+    </plugins>
   </build>
 </project>
